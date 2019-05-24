@@ -1,4 +1,4 @@
 d1 $ stack [ n "0 1 2 4" # s "lighter",
              n "{0*<4? 1>, [4 3]}" # s "glitch",
-             n ("0(3,4)"+ run 4) # s "cosmicg" # gain 0.5 # end 0.02
+             n ("0(3,6)"+ run 4) # s "cosmicg" # gain 0.5 # end 0.02
           ]
