@@ -1,1 +1,3 @@
-d1 $ n "0 1 2 4" # s "lighter"
+d1 $ stack [ n "0 1 2 4" # s "lighter",
+             s "glitch"
+          ]
