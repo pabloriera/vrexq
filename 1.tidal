@@ -1,1 +1,1 @@
-d1 $ n "0 1" # s "lighter"
+d1 $ n "0 1 2 4" # s "lighter"
