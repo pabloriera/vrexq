@@ -1,5 +1,5 @@
 d1 $ stack [ n "0 1 [2 2] 4*5?" # s "lighter",
              fast 2 $ n "{0*<4 2>, [4 3]}" # s "glitch",
-             n ("0(7,16)"+ run 8) # s "cosmicg" # gain 0.6 # end 0.02,
+             n ("0(8,16)"+ run 8) # s "cosmicg" # gain 0.6 # end 0.02,
              n "0 [2*3 1]" # s "peri" # room 0.15 # size 0.2
           ]
