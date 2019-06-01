@@ -3,29 +3,35 @@ let ns p = n (scale "kumai" p)
     carP = pF "carP"
     index = pF "index"
 
-d1 $ s ""
+d1 $ slow 4 $ ns "~ 0 [1 2 3 ~] [3 2 ~ 1]" # sustain 2.0 # s "fms" # gain 0.95 # silence
 
 
 d2
-    $ slow 1.5
-    $ every 16 (# accelerate "-1")
+    -- $ slow 2
+    $ every 16 ((within (0.5, 1) $ (# accelerate "-10")))
     $ every 2 (rotR (1/6))
     $ every 8 (within (0.5, 1) $ striate 2)
+    $ fast 2
     $ every 4 (juxBy 0.5 (+ ns "0 0 -4") . rev . (# orbit 4) . (# sustain 8) . (stut 3 0.125 (-1/3)))
     $ slow 2 $ ns "[<0 -1 2 3>*2, 3(3,12,2), 2(4,12,4), 4(5,8,5), <5 6 7 8>(2,12,4)]"
     # s "fms"
-    # gain 0.8
-    # sustain "[0.5 4]*4"
+    # gain 0.77
+    # sustain "[0.5 2]*4"
     # modP ("[1 2 3 4]*8" + 1)
     # carP "1"
     # detune "[1 0.5 2 4]*2"
     # pan "[0 1]*6"
 
-xfade 2 silence
+xfadeIn 2 16 silence
+
+-- alt
+d2
+    $ ns "0" 
+    # s "fm_t"
 
 d3 
     $ stack [
-    sometimesBy 0.5 (stut 4 0.2 (1/4)) $ s "<glitch  glitch:1>*<6 3>" # speed (range 0.8 0.9 $ sine) # pan (slow 0.5 tri) # gain 0.8,
+    sometimesBy 0.5 (stut 4 0.2 (1/4)) $ s "<clak  bottle:1>*<6 3>" # speed (range 0.8 0.9 $ sine) # pan (slow 0.5 tri) # gain 0.8,
     every 2 (within (0, 0.5) (stut 2 0.4 (1/3)) ) $ s "[drum:2 drum] drum:2 ~ " # gain 0.0,
     sometimesBy 0.25 (# speed "-1") $ every 2 (within (0.5, 1) (stut 4 0.2 (1/8))) $ s "[~ click] ~ (3,8)" # hpf (range 700 12000 $ sine) # lpq 0.2 # pan (slow 1 $ rand),
     s "reverbkick:6*<1 2 4>" # gain 0.0,
@@ -34,18 +40,26 @@ d3
     ]
     
 d6 
-    $ sometimesBy 0.25 (rev)
+    $ sometimesBy 0.25 (# crush 7)
     $ every 2 ( within (0.5, 0.1) (fast 1))
     $ cat [
-    ns "[5 [~ 2]] [2 3? 1]",
+    ns "[[5,3] [~ 2]] [2 3? 1]",
     ns "[2 [[~ 0]]2][3 2 [0 1]]",
-    ns "[0 [~ 3] 1][~ [3 2] 1]"
+    ns "[0 [~ 3] 1][~ [[3, 1]2] 1]"
     ]
     # s "supersquare"
     # lpf (slow 2 $ range 0 800 tri)
     # legato (range 0.125 0.85 rand)
-    # pan ra
+    # pan (slow 2 sine)
+    # detune 2
     # gain 0.5
+    
+d7 
+    $ every 2 (within (0.5, 0.75) (# speed 1.5)) 
+    $ sometimesBy 0.25 (stut 4 0.5 (1/3))
+    $ s "realclaps*<1 2>"
+    # begin " 0 0.0125" 
+    # gain 0.8
     
 
 d4 $ slow 8 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
@@ -60,10 +74,10 @@ d4 $ slow 8 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
     # octave 3
     # detune 2
     
-d5
+xfade 5
     $ degradeBy 0.25
     $ every 2 (within ((2/3), 1) $ fast 2)
-    $ slow 1.5
+    $ slow 2
     $ every 2 (rotR (1/6))
     $ every 3 (# index (range 10 100 $ saw))
     $ every 8 (within (0.5, 1) $ striate 2)
@@ -82,3 +96,4 @@ d5
     -- # waveloss "20 30"
     # accelerate "0.25 0"
     
+xfade 5 silence
