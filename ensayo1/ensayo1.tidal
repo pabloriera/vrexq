@@ -3,7 +3,7 @@ let ns p = n (scale "kumai" p)
     carP = pF "carP"
     index = pF "index"
 
-d1 $ slow 4 $ ns "~ 0 [1 2 3 ~] [3 2 ~ 1]" # sustain 2.0 # s "fms" # gain 0.95 # silence
+d1 $ slow 8 $ ns "<0 1 2 0>" # sustain 2.0 # s "fms" # gain 0.95 # silence
 
 
 d2
@@ -26,12 +26,16 @@ xfadeIn 2 16 silence
 
 -- alt
 d2
-    $ ns "0" 
+    $ ns "[0 3 1 5]" 
     # s "fm_t"
+    # gain 0.9
+    # orbit 4
+    # octave "4 5"
+    # index 20.001
 
 d3 
     $ stack [
-    sometimesBy 0.5 (stut 4 0.2 (1/4)) $ s "<clak  bottle:1>*<6 3>" # speed (range 0.8 0.9 $ sine) # pan (slow 0.5 tri) # gain 0.8,
+    sometimesBy 0.5 (stut 4 0.2 (1/4)) $ s "<clak  bottle:1>*<6 3>" # speed (range 0.8 0.9 $ sine) # pan (slow 0.5 tri) # gain 0,
     every 2 (within (0, 0.5) (stut 2 0.4 (1/3)) ) $ s "[drum:2 drum] drum:2 ~ " # gain 0.0,
     sometimesBy 0.25 (# speed "-1") $ every 2 (within (0.5, 1) (stut 4 0.2 (1/8))) $ s "[~ click] ~ (3,8)" # hpf (range 700 12000 $ sine) # lpq 0.2 # pan (slow 1 $ rand),
     s "reverbkick:6*<1 2 4>" # gain 0.0,
@@ -52,14 +56,14 @@ d6
     # legato (range 0.125 0.85 rand)
     # pan (slow 2 sine)
     # detune 2
-    # gain 0.5
+    # gain 0
     
 d7 
     $ every 2 (within (0.5, 0.75) (# speed 1.5)) 
-    $ sometimesBy 0.25 (stut 4 0.5 (1/3))
+    $ sometimesBy 0.25 (stut 4 0.5 (1/3). (# speed 1.25))
     $ s "realclaps*<1 2>"
     # begin " 0 0.0125" 
-    # gain 0.8
+    # gain 0.7
     
 
 d4 $ slow 8 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
