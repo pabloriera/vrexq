@@ -34,7 +34,7 @@ do
   -- chordi
   d7 $ slow 1 $ nd ("<0(3,8), 0(7,16)>"+"[0,<1 2>,3]-5") # s "cheappiano" # attack 0.0005
      # release 0.08 # orbit 1 # room 0.1 # size 0.1 # shape 0.95 # gain (rand*0.1+0.8)
-  d7 $ silence
+  -- d7 $ silence
   -- sampla
   d8 $ degradeBy 0.8 $ slow 1 $ chop 8 $ n "2" # s "bjrh" # io (slow 2048 $ range 0.1 0.8 $ saw) 0.003
       # speed (slow 32 $ range "-0.5" "-1.5" $ saw ) # cut 1 # attack 0.02 # release 0.8 # orbit 4
