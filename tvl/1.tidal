@@ -12,7 +12,7 @@ do
   d1 $ silence
   -- hh
   d2 $ fast 1 $ s "glitch(<3 3>,<16 8>)" # n "3 7" # gain (range 0.9 1.0 $ rand) # end 0.2
-  d2 $ silence
+  -- d2 $ silence
   -- clap
   d9 $ fast 1 $ n "[~ 0 [~ 0 ~ ~]] [~ 0*<1 2> 0 ~] " # s "industrial" # speed 2 # end 0.2 # gain (rand*0.05+1.0)
   d9 $ silence
