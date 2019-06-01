@@ -18,12 +18,12 @@ do
   -- d9 $ silence
   -- sn
   d3 $ fast 1 $ s "~ sn:2" # gain (rand*0.05+1.2) # shape 0.6
-  d3 $ silence
+  -- d3 $ silence
   -- bass
   d4 $ slow 2 $ nd ("0(12,16)"+ "0 1") # s "bass8" # gain 1.2 # attack 0.01 # release 0.6 # lpf 150
   d4 $ fast 1 $ nd ("[0  ~  ~  <2 3>] [ ~ 0] ") # s "bass8" # gain (rand*0.05+1.1)
      # attack 0.01 # release 0.6 # lpf 150
-  d4 $ silence
+  -- d4 $ silence
   -- perc
   d5 $ slow 2 $ n "0(5,8,2) 2(3,8,<0 2>)" # s "insect" # gain (range 0.9 1.0 $ rand)
   -- d5 $ silence
