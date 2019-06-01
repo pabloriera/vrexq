@@ -3,10 +3,11 @@ let ns p = n (scale "kumai" p)
     carP = pF "carP"
     index = pF "index"
 
-d1 $silence
+d1 $ s ""
 
 
 d2
+    $ slow 1.5
     $ every 16 (# accelerate "-1")
     $ every 2 (rotR (1/6))
     $ every 8 (within (0.5, 1) $ striate 2)
@@ -40,9 +41,10 @@ d6
     ns "[2 [[~ 0]]2][3 2 [0 1]]",
     ns "[0 [~ 3] 1][~ [3 2] 1]"
     ]
-    # s "superpri"
-    # lpf (slow 2 $ range 0 2500 tri)
-    # legato (range 0.125 0.75 sine)
+    # s "supersquare"
+    # lpf (slow 2 $ range 0 800 tri)
+    # legato (range 0.125 0.85 rand)
+    
     # gain 0.5
     
 
