@@ -27,10 +27,13 @@ d3
     sometimesBy 0.5 (stut 4 0.2 (1/4)) $ s "<glitch  glitch:1>*<6 3>" # speed (range 0.8 0.9 $ sine) # pan (slow 0.5 tri) # gain 0.8,
     every 2 (within (0, 0.5) (stut 2 0.4 (1/3)) ) $ s "[drum:2 drum] drum:2 ~ " # gain 0.0,
     sometimesBy 0.25 (# speed "-1") $ every 2 (within (0.5, 1) (stut 4 0.2 (1/8))) $ s "[~ click] ~ (3,8)" # hpf (range 700 12000 $ sine) # lpq 0.2 # pan (slow 1 $ rand),
-    s "reverbkick:6*<1 2 4>" # gain 0.5,
-    sometimesBy 0.25 (stut 6 0.7 (1/8)) $ every 2 (within (0, 0.5) (#speed 0.25).(#crush 7)) $ s "<kicklinn:2 kicklinn:5>*2" # gain (rand*0.1 + 0.7),
+    s "reverbkick:6*<1 2 4>" # gain 0.65,
+    sometimesBy 0.25 (stut 6 0.7 (1/8)) $ every 2 (within (0, 0.5) (#speed 0.25).(#crush 7)) $ s "<kicklinn:2 kicklinn:5>*2" # gain (rand*0.1 + 0.8),
     stut 4 0.2 (1/8) $ every 2 (# nudge 0.0125) $ degradeBy 0.2 $ s "linnhats:3 linnhats*<4 2>" # gain 0.5 # orbit 4 
     ]
+    
+d6 
+    $ ns ()
     
 
 d4 $ slow 8 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
@@ -48,6 +51,7 @@ d4 $ slow 8 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
 d5
     -- $ slow 2
     $ every 2 (rotR (1/6))
+    $ every 3 (# ine (range 6 16 $ saw))
     $ every 8 (within (0.5, 1) $ striate 2)
     $ every 4 (juxBy 0.5 (+ ns "0 -4 -4") . rev . (# orbit 4) . (# sustain 2))
     $ ns "[0*6, 3(3,12,2), 2(4,12,4), 4(5,12,5)]"
@@ -58,9 +62,7 @@ d5
     # modP "6 8 4 6"
     # index "[1 40.01 10 80.001]*2"
     # octave ("[7 8 7 8]*2" - 1)
-    # detune 2
+    # detune "[2 4 0.5 2]*2"
     # orbit "[0 3]*8"
     # pan (slow 2 $ sine * 0.8)
     
-
-
