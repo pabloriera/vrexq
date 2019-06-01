@@ -3,8 +3,7 @@ let ns p = n (scale "kumai" p)
     carP = pF "carP"
     index = pF "index"
 
-d1 $ slow 8 $ ns "<0 1 2 0>" # sustain 2.0 # s "fms" # gain 0.95 # silence
-
+d41 $ slow 8 $ ns "[0 1 2 3]" # s "fms"  # octave 4 # sustain 10 # gain (slow 2 $ range 0.5 0.8 sine)
 
 d2
     -- $ slow 2
@@ -26,17 +25,20 @@ xfadeIn 2 16 silence
 
 -- alt
 d2
+    $ every (ns "[0 3 1 5, 6 2 ~ 1]"))
     $ ns "[0 3 1 5]" 
     # s "fm_t"
     # gain 0.9
     # orbit 4
     # octave "4 5"
-    # index 20.001
+    # index 20.01
+    # accelerate "-0.0225"
+    # modP "[10 20]*2"
 
 d3 
     $ stack [
     sometimesBy 0.5 (stut 4 0.2 (1/4)) $ s "<clak  bottle:1>*<6 3>" # speed (range 0.8 0.9 $ sine) # pan (slow 0.5 tri) # gain 0,
-    every 2 (within (0, 0.5) (stut 2 0.4 (1/3)) ) $ s "[drum:2 drum] drum:2 ~ " # gain 0.0,
+    every 2 (within (0, 0.5) (stut 2 0.4 (1/3)) ) $ s "[tok:2 tok ~ ] [tok:2 tok] [~ tok ~ ] " # gain 0.8 # pan (fast 2 sine),
     sometimesBy 0.25 (# speed "-1") $ every 2 (within (0.5, 1) (stut 4 0.2 (1/8))) $ s "[~ click] ~ (3,8)" # hpf (range 700 12000 $ sine) # lpq 0.2 # pan (slow 1 $ rand),
     s "reverbkick:6*<1 2 4>" # gain 0.0,
     sometimesBy 0.25 (stut 6 0.7 (1/8)) $ every 2 (within (0, 0.5) (#speed 0.25).(#crush 7)) $ s "<kicklinn:2 kicklinn:5>*2" # gain (rand*0.1 + 0.6),
