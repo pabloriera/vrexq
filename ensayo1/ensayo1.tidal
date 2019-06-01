@@ -44,7 +44,7 @@ d6
     # s "supersquare"
     # lpf (slow 2 $ range 0 800 tri)
     # legato (range 0.125 0.85 rand)
-    
+    # pan ra
     # gain 0.5
     
 
