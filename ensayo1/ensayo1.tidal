@@ -4,16 +4,16 @@ let ns p = n (scale "kumai" p)
     index = pF "index"
 
 d1 $ slow 4 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
-    # attack 8
-    # sustain 10
-    # release 8
+    # attack 0.1
+    # sustain 1
+    # release 0.5
     # index 2
-    # lpf 400
+    # hpf 8000
     # orbit 1
-    # gain 1
+    # gain 1.8
     # carP 1
-    # octave 1
-    # detune 2
+    # octave 2
+    # detune 0
 
 
 d2
@@ -43,9 +43,10 @@ d3
     ]
     
 d6 
-    $ ns "[5 [~ 2] 3 1]"
+    $ fast 1
+    $ ns "[5 [~ 2]] [2 3? 1]"
     # s "supergrind"
-    # lpf (slow 2 $ range 50 700 tri)
+    # lpf (slow 2 $ range 50 1500 tri)
     # legato (range 0.5 0.75 sine)
     # gain 0.5 
     
@@ -62,8 +63,8 @@ d4 $ slow 8 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
     # octave 3
     # detune 2
     
-xfade 5
-    -- $ slow 2
+d5
+    $ slow 1.5
     $ every 2 (rotR (1/6))
     $ every 3 (# index (range 10 100 $ saw))
     $ every 8 (within (0.5, 1) $ striate 2)
@@ -79,6 +80,6 @@ xfade 5
     # detune "[2 4 0.5 2]*2"
     # orbit "[0 3]*8"
     # pan (slow 2 $ sine * 0.8)
-    # waveloss "20 30"
-    # accelerate "-1"
+    -- # waveloss "20 30"
+    # accelerate "-10 10"
     
