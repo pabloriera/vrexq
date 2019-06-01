@@ -3,7 +3,7 @@ let ns p = n (scale "kumai" p)
     carP = pF "carP"
     index = pF "index"
 
-d41 $ slow 8 $ ns "[0 1 2 3]" # s "fms"  # octave 4 # sustain 10 # gain (slow 2 $ range 0.5 0.8 sine)
+d1 $ slow 8 $ ns "[0 1 2 3]" # s "fms" # index 4 # octave 4 # sustain 10 # gain (slow 2 $ range 0.5 0.8 sine)
 
 d2
     -- $ slow 2
@@ -25,8 +25,8 @@ xfadeIn 2 16 silence
 
 -- alt
 d2
-    $ every (ns "[0 3 1 5, 6 2 ~ 1]"))
-    $ ns "[0 3 1 5]" 
+    $ every 8 (ns "[0 3 1 5, 6 2 ~ 1]")
+    $ ns "[0 3 1 5, 6 2 ~ 1]" 
     # s "fm_t"
     # gain 0.9
     # orbit 4
@@ -34,16 +34,18 @@ d2
     # index 20.01
     # accelerate "-0.0225"
     # modP "[10 20]*2"
+    # pan (slow 8 $ range 0.2 0.8 $ sine)
 
 d3 
     $ stack [
     sometimesBy 0.5 (stut 4 0.2 (1/4)) $ s "<clak  bottle:1>*<6 3>" # speed (range 0.8 0.9 $ sine) # pan (slow 0.5 tri) # gain 0,
-    every 2 (within (0, 0.5) (stut 2 0.4 (1/3)) ) $ s "[tok:2 tok ~ ] [tok:2 tok] [~ tok ~ ] " # gain 0.8 # pan (fast 2 sine),
-    sometimesBy 0.25 (# speed "-1") $ every 2 (within (0.5, 1) (stut 4 0.2 (1/8))) $ s "[~ click] ~ (3,8)" # hpf (range 700 12000 $ sine) # lpq 0.2 # pan (slow 1 $ rand),
+    every 2 (within (0, 0.5) (stut 2 0.4 (1/3)) ) $ s "[tok:2 tok ~ ] [tok:2 tok] [~ tok ~ ] " # gain 0 # pan (fast 2 sine) ,
+    sometimesBy 0.25 (# speed "-1") $ every 2 (within (0.5, 1) (stut 4 0.2 (1/8))) $ s "[~ click] ~ (3,8)" # hpf (range 700 12000 $ sine) # lpq 0.2 # pan (slow 1 $ rand) # gain 0,
     s "reverbkick:6*<1 2 4>" # gain 0.0,
-    sometimesBy 0.25 (stut 6 0.7 (1/8)) $ every 2 (within (0, 0.5) (#speed 0.25).(#crush 7)) $ s "<kicklinn:2 kicklinn:5>*2" # gain (rand*0.1 + 0.6),
-    stut 4 0.2 (1/8) $ every 2 (# nudge 0.0125) $ degradeBy 0.2 $ s "linnhats:3 linnhats*<4 2>" # gain 0.5 # orbit 4 
+    sometimesBy 0.25 (stut 6 0.7 (1/8)) $ every 2 (within (0, 0.5) (#speed 0.25).(#crush 7)) $ s "<kicklinn:2 kicklinn:5>*2" # gain 0,
+    stut 4 0.2 (1/8) $ every 2 (# nudge 0.0125) $ degradeBy 0.2 $ s "linnhats:3 linnhats*<4 2>" # gain 0 # orbit 4 
     ]
+    
     
 d6 
     $ sometimesBy 0.25 (# crush 7)
@@ -60,12 +62,12 @@ d6
     # detune 2
     # gain 0
     
-d7 
+xfadeIn 7 4
     $ every 2 (within (0.5, 0.75) (# speed 1.5)) 
     $ sometimesBy 0.25 (stut 4 0.5 (1/3). (# speed 1.25))
     $ s "realclaps*<1 2>"
     # begin " 0 0.0125" 
-    # gain 0.7
+    # gain 0
     
 
 d4 $ slow 8 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
