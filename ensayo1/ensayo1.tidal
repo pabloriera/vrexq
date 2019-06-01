@@ -9,7 +9,7 @@ d1 $ slow 4 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
     # release 8
     # index 2
     # lpf 400
-    # orbit 4
+    # orbit 1
     # gain 1
     # carP 1
     # octave 1
@@ -46,7 +46,7 @@ d6
     $ ns "[5 [~ 2] 3 1]"
     # s "supergrind"
     # lpf (slow 2 $ range 50 700 tri)
-    # legato (range )
+    # legato (range 0.5 0.75 sine)
     # gain 0.5 
     
 
