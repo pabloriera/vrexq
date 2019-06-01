@@ -1,0 +1,10 @@
+
+
+
+do
+    hush
+    let ns p = n (scale "" p)
+        modP = pF "modP"
+        carP = pF "carP"
+        index = pF "index"
+    d1 $ s "~"
