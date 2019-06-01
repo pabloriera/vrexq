@@ -9,7 +9,7 @@ do
   hush
   -- bombi
   d1 $ fast 1 $ s "bassdm*2" # gain (rand*0.05+1.2) # room 0.1 # size 0.1 # orbit 2 # lpq 0.2 # lpf 80
-  d1 $ silence
+  -- d1 $ silence
   -- hh
   d2 $ fast 1 $ s "glitch(<3 3>,<16 8>)" # n "3 7" # gain (range 0.9 1.0 $ rand) # end 0.2
   -- d2 $ silence
