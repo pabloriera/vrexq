@@ -5,24 +5,40 @@ do
         carP = pF "carP"
         index = pF "index"
     d1 
-        $ slow 1 $ n "[0 <~ 2?>]" 
-        # s "industrial" 
-        # end 0.01 
-        # gain 0.8 
+        $ slow 1 
+        $ stack [
+            n "[0 <~ 2>]" 
+            # s "industrial" 
+            # end 0.01 
+            # gain 0.7,
+            s "bassdm"
+            # gain 0.8
+            ]
         # orbit 2 
         # room 0.1 
         # size 0.2
+    d4 
+        $ slow 4 $ ns "<0 0*2 0?>" # s "supersquare" # lpf 100 # lpq 0.1 # gain 0.6
     -- 
     d2 
         $ every 2 (within (0, 0.5)(# nudge 0.0125))
         $ cat [
         ns "[2 0 1 3]",
-        ns "~ [0,2] ! [3,5]"
+        ns "~ [0,2] ~  [3,5]",
+        ns "2 ~ 1 ~",
+        ns "[0,2] ~  ~ [3,5]"
         ]
         # s "supernoise"
         # begin (range 0.0125 0.5 sine)
         # gain 0.5
         # lpf (slow 2 $ range 50 800 rand)
+    d5 
+        $ every 2 (within (0.5, 1) (stut 4 0.2 (1/8)))
+        $ sometimesBy 0.25 (# speed 2)
+        $ degradeBy 0.25
+        $ s "<glitch glitch:1>*<4 8 16>"
+        # gain 0.7
+        # pan sine
     --
     d3
         $ slow 8
@@ -32,6 +48,19 @@ do
         # sustain 10
         # release 8
         # detune "<2 3>"
-        # modP 10
+        # modP "5 10"
         # index 5.01
         # gain 0.9
+    --
+    d6
+        $ every 3 (within (0.25, 0.75) $ jux rev)
+        $ every 2 (within (0.5, 1) $ stut 4 0.125 (-1/4))
+        $ every 4 (within (0.75, 1) $ rotL 0.125)
+        $ slow 2
+        $ ns "[0 2 5 4, 1(3,8), 2(6,16,2), 3(3,16,4), <4 5 6 7>*2]"
+        # s "fms"
+        # gain 0.8
+        # modP "[10 20 15 20]*2"
+        # sustain "[0.75 2]*8"
+        # carP 2
+        # pan (range 0.2 0.8 $ sine)
