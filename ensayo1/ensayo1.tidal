@@ -3,7 +3,7 @@ let ns p = n (scale "kumai" p)
     carP = pF "carP"
     index = pF "index"
 
-d1 $ slow 8 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
+d1 $ slow 4 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
     # attack 8
     # sustain 10
     # release 8
@@ -45,7 +45,9 @@ d3
 d6 
     $ ns "[5 [~ 2] 3 1]"
     # s "supergrind"
-    # lpf (slow 2 $ range 50 700 tri) 
+    # lpf (slow 2 $ range 50 700 tri)
+    # legato (range )
+    # gain 0.5 
     
 
 d4 $ slow 8 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
@@ -77,6 +79,6 @@ xfade 5
     # detune "[2 4 0.5 2]*2"
     # orbit "[0 3]*8"
     # pan (slow 2 $ sine * 0.8)
-    -- # waveloss "30 50"
+    # waveloss "20 30"
     # accelerate "-1"
     
