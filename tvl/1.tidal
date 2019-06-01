@@ -26,11 +26,11 @@ do
   d4 $ silence
   -- perc
   d5 $ slow 2 $ n "0(5,8,2) 2(3,8,<0 2>)" # s "insect" # gain (range 0.9 1.0 $ rand)
-  d5 $ silence
+  -- d5 $ silence
   -- marimar
   d6 $ slow 2 $ nd ("0(12,16)" + "[<0 -1> <1 0>] <3 2>") # s "marimba" # shape 0.5 # gain (rand*0.1+1.1)
   d6 $ slow 1 $ nd ("0(12,16)" + "<1 0 2 0>") # s "marimba" # shape 0.5 # gain (rand*0.1+1.1)
-  d6 $ silence
+  -- d6 $ silence
   -- chordi
   d7 $ slow 1 $ nd ("<0(3,8), 0(7,16)>"+"[0,<1 2>,3]-5") # s "cheappiano" # attack 0.0005
      # release 0.08 # orbit 1 # room 0.1 # size 0.1 # shape 0.95 # gain (rand*0.1+0.8)
