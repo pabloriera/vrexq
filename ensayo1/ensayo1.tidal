@@ -10,7 +10,7 @@ d1 $ slow 4 $ ns "[5 6 7 8, 0 1 2 3]" # s "fms"
     # index 12
     # hpf 8000
     # orbit 1
-    # gain 1.4
+    # gain 1.8
     # carP 1
     # octave 2
     # detune 0
@@ -43,8 +43,8 @@ d3
     ]
     
 d6 
-
-       $ every 2 ( within (0.5, 0.1) (fast 1))
+    $ sometimesby 0.2
+    $ every 2 ( within (0.5, 0.1) (fast 1))
     $ ns "[5 [~ 2]] [2 3? 1]"
     # s "supergrind"
     # lpf (slow 2 $ range 50 1500 tri)
