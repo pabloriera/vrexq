@@ -4,6 +4,7 @@ do
         modP = pF "modP"
         carP = pF "carP"
         index = pF "index"
+    interpolateIn 2 9 $ cps 0.8
     d1 
         $ slow 1 
         $ stack [
@@ -18,7 +19,14 @@ do
         # room 0.1 
         # size 0.2
     d4 
-        $ slow 4 $ ns "<0 0*2 0?>" # s "supersquare" # lpf 100 # lpq 0.1 # gain 0.6
+        $ slow 2 
+        $ ns "<0 0*2 2 0>" 
+        # s "supersquare"
+        # sustain 0.1
+        # octave 3 
+        # lpf 200 
+        # lpq 0.1 
+        # gain 0.8
     -- 
     d2 
         $ every 2 (within (0, 0.5)(# nudge 0.0125))
@@ -28,15 +36,19 @@ do
         ns "2 ~ 1 ~",
         ns "[0,2] ~  ~ [3,5]"
         ]
-        # s "supernoise"
+        # s "supergong"
         # begin (range 0.0125 0.5 sine)
-        # gain 0.5
+        # gain 0.7
         # lpf (slow 2 $ range 50 800 rand)
     d5 
-        $ every 2 (within (0.5, 1) (stut 4 0.2 (1/8)))
+        $ every 3 (stut 6 0.2 (1/3))
+        $ every 2 (within (0.5, 1) (stut 3 0.5 (1/3)))
         $ sometimesBy 0.25 (# speed 2)
         $ degradeBy 0.25
         $ s "<glitch glitch:1>*<4 8 16>"
+        # hpf (slow 2 $ range 800 8000 sine)
+        # hpq 0.3
+        # orbit 4
         # gain 0.7
         # pan sine
     --
@@ -64,3 +76,4 @@ do
         # sustain "[0.75 2]*8"
         # carP 2
         # pan (range 0.2 0.8 $ sine)
+        # orbit "[3 4]*8"
