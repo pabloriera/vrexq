@@ -1,0 +1,42 @@
+hush
+
+let nd d = n ( scale "minPent" $ d)
+let io i d = begin i # end (i+d)
+
+setcps 0.5
+
+do
+  hush
+  -- bombi
+  d1 $ fast 1 $ s "bassdm*2" # gain (rand*0.05+1.2) # room 0.1 # size 0.1 # orbit 2 # lpq 0.2 # lpf 80
+  d1 $ silence
+  -- hh
+  d2 $ fast 1 $ s "glitch(<3 3>,<16 8>)" # n "3 7" # gain (range 0.9 1.0 $ rand) # end 0.2
+  d2 $ silence
+  -- clap
+  d9 $ fast 1 $ n "[~ 0 [~ 0 ~ ~]] [~ 0*<1 2> 0 ~] " # s "industrial" # speed 2 # end 0.2 # gain (rand*0.05+1.0)
+  d9 $ silence
+  -- sn
+  d3 $ fast 1 $ s "~ sn:2" # gain (rand*0.05+1.2) # shape 0.6
+  d3 $ silence
+  -- bass
+  d4 $ slow 2 $ nd ("0(12,16)"+ "0 1") # s "bass8" # gain 1.2 # attack 0.01 # release 0.6 # lpf 150
+  d4 $ fast 1 $ nd ("[0  ~  ~  <2 3>] [ ~ 0] ") # s "bass8" # gain (rand*0.05+1.1)
+     # attack 0.01 # release 0.6 # lpf 150
+  d4 $ silence
+  -- perc
+  d5 $ slow 2 $ n "0(5,8,2) 2(3,8,<0 2>)" # s "insect" # gain (range 0.9 1.0 $ rand)
+  d5 $ silence
+  -- marimar
+  d6 $ slow 2 $ nd ("0(12,16)" + "[<0 -1> <1 0>] <3 2>") # s "marimba" # shape 0.5 # gain (rand*0.1+1.1)
+  d6 $ slow 1 $ nd ("0(12,16)" + "<1 0 2 0>") # s "marimba" # shape 0.5 # gain (rand*0.1+1.1)
+  d6 $ silence
+  -- chordi
+  d7 $ slow 1 $ nd ("<0(3,8), 0(7,16)>"+"[0,<1 2>,3]-5") # s "cheappiano" # attack 0.0005
+     # release 0.08 # orbit 1 # room 0.1 # size 0.1 # shape 0.95 # gain (rand*0.1+0.8)
+  d7 $ silence
+  -- sampla
+  d8 $ degradeBy 0.8 $ slow 1 $ chop 8 $ n "2" # s "bjrh" # io (slow 2048 $ range 0.1 0.8 $ saw) 0.003
+      # speed (slow 32 $ range "-0.5" "-1.5" $ saw ) # cut 1 # attack 0.02 # release 0.8 # orbit 4
+      # gain (rand*0.1+1.0) # room 0.3 # size 0.9 # lpf (range 5000 15000 $ rand) # lpq 0.4
+  d8 $ silence
