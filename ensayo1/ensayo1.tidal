@@ -1,4 +1,4 @@
-let ns p = n (scale "kumai" p)
+let ns p = n (scale "major" p)
     modP = pF "modP"
     carP = pF "carP"
     index = pF "index"
@@ -32,7 +32,7 @@ d2
     # octave 5
     # index 20.01
     # accelerate "-0.0225"
-    # sustain "[0 2]*2"
+    -- # sustain "[0 2]*2"
     # detune 4
     # modP "[10 20]*2"
     # pan (slow 8 $ range 0.2 0.8 $ sine)
