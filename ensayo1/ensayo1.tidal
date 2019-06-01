@@ -25,16 +25,19 @@ xfadeIn 2 16 silence
 
 -- alt
 d2
-    $ every 8 (ns "[0 3 1 5, 6 2 ~ 1]")
-    $ ns "[0 3 1 5, 6 2 ~ 1]" 
+    $ ns "[0 3 1 5, [6 2 ~ 1]?]" 
     # s "fm_t"
     # gain 0.9
     # orbit 4
-    # octave "4 5"
+    # octave 5
     # index 20.01
     # accelerate "-0.0225"
+    # sustain "[0 2]*2"
+    # detune 4
     # modP "[10 20]*2"
     # pan (slow 8 $ range 0.2 0.8 $ sine)
+    
+d2 silence
 
 d3 
     $ stack [
@@ -46,6 +49,7 @@ d3
     stut 4 0.2 (1/8) $ every 2 (# nudge 0.0125) $ degradeBy 0.2 $ s "linnhats:3 linnhats*<4 2>" # gain 0 # orbit 4 
     ]
     
+d silence
     
 d6 
     $ sometimesBy 0.25 (# crush 7)
